@@ -31,3 +31,7 @@ School GeoPlan
 
 
 ![screenshotCasesByCountyAPI.PNG](screenshotCasesByCountyAPI.PNG)
+
+![dashboardDesign.PNG](dashboardDesign.PNG)
+
+
