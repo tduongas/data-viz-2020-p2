@@ -28,3 +28,6 @@ Florida COVID19: https://experience.arcgis.com/experience/96dd742462124fa0b38dde
 
 School GeoPlan
 - https://geodata.myflorida.com/datasets/ufl::geoplan-public-and-private-schools-in-florida-2017?geometry=-85.708%2C29.355%2C-80.481%2C30.190
+
+
+![screenshotCasesByCountyAPI.PNG](screenshotCasesByCountyAPI.PNG)
