@@ -1,37 +1,57 @@
-Project Specification
+<H1>UCF Data Vizualization - Project 2</H1>
 
-Brief articulation - Test
+<H2>Project Title:</H2>
+<p>COVID-19 cases impact on opening up schools in <b>Florida</b>.</p>
 
-Used public accessible datasets to visually assess the impact of Covid-19 on local schools and hospitals in the state of Florida.
+<br>
+<H2>Team Members:</H2>
+	<p>Christina Rawls, Dinh Duong, Joe Dahruj and Juan Salicrup</p>
 
+<br>
+<H2>Project Description/Outline:</H2>
+	<p>Using the skills and tools learnt in our Data Analytics course work such as SQL, Extract Transform Load (ETL), Data-Driven Documents (D3), Mapbox, Plotly, various frameworks and libraries we will explore ways to collect datasets and store them into a Postgres database. We will write APIs we can use in Python Flask. The data will get displayed using Plotly, Mapbox and Bootstrap. The chosen datasets we will are:
+	
+	<ul>
+		<li><a href="https://usafacts.org/visualizations/coronavirus-covid-19-spread-map/">Coronavirus Locations: COVID-19 Map by County and State</a></li>
+		<li><a href="https://floridahealthcovid19.gov/">Florida Heath COVID-19</a></li>
+		<li><a href="https://geodata.myflorida.com/datasets/ufl::geoplan-public-and-private-schools-in-florida-2017?geometry=-103.881%2C24.236%2C-61.979%2C31.043">GeoPlan Public and Private Schools in Florida - 2017</a></li>
+	</ul>	
 
-Is it safe for schools to open in a particular county?
-- Number of of infected versus hospitalization / ICU bed availability
-- What criteria would we choose? 
-	+ If more than 20 under the age of 20 die then we cannot open
+<br>    
+<H2>Brief articulation:</H2>
+	<p>Use public accessible datasets to visually assess the impact of COVID-19 on local schools in the state of Florida.</p>
+	<p>We have targeted in one question. Is it safe for schools to open in a particular county? A break down of information that will be gathered to answer this question includes:</p>
+	<ul>
+		<li>Looking at number of infected versus hospitalization</li>
+		<li>ICU bed availability per county</li>
+		<li>Choosen criteria: if more than 20 under the age of 20 die then we cannot open</li>
+		<li>Look at the number of cases versus population to see if this will give insight on schools to re-open</li>
+	</ul>
 
+<br>
+<H2>Proposed specification:</H2>
+	<p>We will perform ETL technique to take our chosen datasets and load them into a Postgres database. Database queries will be created and get served by our Python Flask application with end points that will be constructed to be used by our front end application.</p>
+	<p>The front end application will be built using D3, Plotly and Boxmap. We will have a dashboard display two types of charts and a GeoMap. The dashboard will be written in Bootstrap.
 
-Look at the number of cases versus population to see if this will give insight on schools to re-open
+<H2>References:<H2>
+	<ul>
+		<li>Meta Data of cases by county
+			<div>![screenshotCasesByCountyAPI.PNG](images/screenshotCasesByCountyAPI.PNG)</div>
+		</li>
+		<li>"Inspiring" Screenshot 1
+			<div>![dashboardDesign.PNG](images/inspiring-vizualization-1.PNG)</div>
+		</li>
+		<li>"Inspiring" Screenshot 2
+			<div>![dashboardDesign.PNG](images/inspiring-vizualization-2.PNG)</div>
+		</li>
+		<li>"Inspiring" Screenshot 3
+			<div>![dashboardDesign.PNG](images/inspiring-vizualization-3.PNG)</div>
+		</li>
+		<li>Dashboard Sketch/Design
+			<div>![dashboardDesign.PNG](images/dashboardDesign.PNG)</div>
+		</li>
 
-We will perform Extract Transform and Load (ETL) technique to take the following datasets:
-
-
-Website: https://usafacts.org/visualizations/coronavirus-covid-19-spread-map/
-- Known Cases: https://usafactsstatic.blob.core.windows.net/public/data/covid-19/covid_confirmed_usafacts.csv
-- Deaths: https://usafactsstatic.blob.core.windows.net/public/data/covid-19/covid_deaths_usafacts.csv
-- County Population: https://usafactsstatic.blob.core.windows.net/public/data/covid-19/covid_county_population_usafacts.csv
-
-
-Florida COVID19: https://experience.arcgis.com/experience/96dd742462124fa0b38ddedb9b25e429
-- Cases by County (For Age Data): https://open-fdoh.hub.arcgis.com/datasets/florida-covid19-cases-by-county
-- Cases Zips COVID19: https://open-fdoh.hub.arcgis.com/datasets/florida-cases-zips-covid19/data?geometry=-104.740%2C24.356%2C-62.926%2C31.156
-
-School GeoPlan
-- https://geodata.myflorida.com/datasets/ufl::geoplan-public-and-private-schools-in-florida-2017?geometry=-85.708%2C29.355%2C-80.481%2C30.190
-
-
-![screenshotCasesByCountyAPI.PNG](screenshotCasesByCountyAPI.PNG)
-
-![dashboardDesign.PNG](dashboardDesign.PNG)
+		
+		
 
 
