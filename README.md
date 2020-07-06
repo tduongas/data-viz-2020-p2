@@ -35,17 +35,21 @@
 <br>
 <H2>References:<H2>
 	
-		<h3>Meta Data of cases by county</h3>
+## Meta Data of cases by county
 ![screenshotCasesByCountyAPI.PNG](images/screenshotCasesByCountyAPI.PNG)
-		
-		<h3>"Inspiring" Screenshot 1</h3>
+	
+	
+## "Inspiring" Screenshot 1
 ![dashboardDesign.PNG](images/inspiring-vizualization-1.PNG)
-		
-		<h3>"Inspiring" Screenshot 2</h3>
+	
+	
+## "Inspiring" Screenshot 2
 ![dashboardDesign.PNG](images/inspiring-vizualization-2.PNG)
-		
-		<h3>"Inspiring" Screenshot 3</h3>
+	
+	
+## "Inspiring" Screenshot 3
 ![dashboardDesign.PNG](images/inspiring-vizualization-3.PNG)
 	
-		<h3>Dashboard Sketch/Design</h3>
+	
+## Dashboard Sketch/Design
 ![dashboardDesign.PNG](images/dashboardDesign.PNG)
