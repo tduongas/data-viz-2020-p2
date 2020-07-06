@@ -9,14 +9,13 @@
 
 <br>
 <H2>Project Description/Outline:</H2>
-	<p>Using the skills and tools learnt in our Data Analytics course work such as SQL, Extract Transform Load (ETL), Data-Driven Documents (D3), Mapbox, Plotly, various frameworks and libraries we will explore ways to collect datasets and store them into a Postgres database. We will write APIs we can use in Python Flask. The data will get displayed using Plotly, Mapbox and Bootstrap. The chosen datasets we will are:
-	
+	<p>Using the skills and tools learnt in our Data Analytics course work such as SQL, Extract Transform Load (ETL), Data-Driven Documents (D3), Mapbox, Plotly, various frameworks and libraries we will explore ways to collect datasets and store them into a Postgres database. We will write APIs we can use in Python Flask. The data will get displayed using Plotly, Mapbox and Bootstrap. The chosen datasets we will are:</p>
 	<ul>
 		<li><a href="https://usafacts.org/visualizations/coronavirus-covid-19-spread-map/">Coronavirus Locations: COVID-19 Map by County and State</a></li>
 		<li><a href="https://floridahealthcovid19.gov/">Florida Heath COVID-19</a></li>
-		<li><a href="https://geodata.myflorida.com/datasets/ufl::geoplan-public-and-private-schools-in-florida-2017?geometry=-103.881%2C24.236%2C-61.979%2C31.043">GeoPlan Public and Private Schools in Florida - 2017</a></li>
-	</ul>	
-
+		<li><a href="https://geodata.myflorida.com/datasets/ufl::geoplan-public-and-private-schools-in-florida-2017">GeoPlan Public and Private Schools in Florida - 2017</a></li>
+	</ul>		
+	
 <br>    
 <H2>Brief articulation:</H2>
 	<p>Use public accessible datasets to visually assess the impact of COVID-19 on local schools in the state of Florida.</p>
@@ -31,27 +30,22 @@
 <br>
 <H2>Proposed specification:</H2>
 	<p>We will perform ETL technique to take our chosen datasets and load them into a Postgres database. Database queries will be created and get served by our Python Flask application with end points that will be constructed to be used by our front end application.</p>
-	<p>The front end application will be built using D3, Plotly and Boxmap. We will have a dashboard display two types of charts and a GeoMap. The dashboard will be written in Bootstrap.
-
+	<p>The front end application will be built using D3, Plotly and Boxmap. We will have a dashboard display two types of charts and a GeoMap. The dashboard will be written in Bootstrap.</p>
+	
+<br>
 <H2>References:<H2>
-	<ul>
-		<li>Meta Data of cases by county
-			<div>![screenshotCasesByCountyAPI.PNG](images/screenshotCasesByCountyAPI.PNG)</div>
-		</li>
-		<li>"Inspiring" Screenshot 1
-			<div>![dashboardDesign.PNG](images/inspiring-vizualization-1.PNG)</div>
-		</li>
-		<li>"Inspiring" Screenshot 2
-			<div>![dashboardDesign.PNG](images/inspiring-vizualization-2.PNG)</div>
-		</li>
-		<li>"Inspiring" Screenshot 3
-			<div>![dashboardDesign.PNG](images/inspiring-vizualization-3.PNG)</div>
-		</li>
-		<li>Dashboard Sketch/Design
-			<div>![dashboardDesign.PNG](images/dashboardDesign.PNG)</div>
-		</li>
-
+	
+		<h3>Meta Data of cases by county</h3>
+![screenshotCasesByCountyAPI.PNG](images/screenshotCasesByCountyAPI.PNG)
 		
+		<h3>"Inspiring" Screenshot 1</h3>
+![dashboardDesign.PNG](images/inspiring-vizualization-1.PNG)
 		
-
-
+		<h3>"Inspiring" Screenshot 2</h3>
+![dashboardDesign.PNG](images/inspiring-vizualization-2.PNG)
+		
+		<h3>"Inspiring" Screenshot 3</h3>
+![dashboardDesign.PNG](images/inspiring-vizualization-3.PNG)
+	
+		<h3>Dashboard Sketch/Design</h3>
+![dashboardDesign.PNG](images/dashboardDesign.PNG)
