@@ -1,6 +1,6 @@
 Project Specification
 
-Brief articulation - 
+Brief articulation - Test
 
 Used public accessible datasets to visually assess the impact of Covid-19 on local schools and hospitals in the state of Florida.
 
