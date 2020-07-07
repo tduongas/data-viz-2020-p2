@@ -11,9 +11,9 @@
 <H2>Project Description/Outline:</H2>
 	<p>Using the skills and tools learnt in our Data Analytics/Vizualization course work such as SQL, Extract Transform Load (ETL), Data-Driven Documents (D3), Mapbox, Plotly, various frameworks and libraries we will explore ways to collect datasets and store them into a Postgres database. We will write APIs we can use in Python Flask. The data will get displayed using Plotly, Mapbox and Bootstrap. The chosen datasets we will are:</p>
 	<ul>
-		<li><a href="https://usafacts.org/visualizations/coronavirus-covid-19-spread-map/" target="_blank">Coronavirus Locations: COVID-19 Map by County and State</a></li>
-		<li><a href="https://floridahealthcovid19.gov/" target="_blank">Florida Heath COVID-19</a></li>
-		<li><a href="https://geodata.myflorida.com/datasets/ufl::geoplan-public-and-private-schools-in-florida-2017" target="_blank">GeoPlan Public and Private Schools in Florida - 2017</a></li>
+		<li><a href="https://usafacts.org/visualizations/coronavirus-covid-19-spread-map/" rel="noopener noreferrer" target="_blank">Coronavirus Locations: COVID-19 Map by County and State</a></li>
+		<li><a href="https://floridahealthcovid19.gov/" rel="noopener noreferrer" target="_blank">Florida Heath COVID-19</a></li>
+		<li><a href="https://geodata.myflorida.com/datasets/ufl::geoplan-public-and-private-schools-in-florida-2017" rel="noopener noreferrer" target="_blank">GeoPlan Public and Private Schools in Florida - 2017</a></li>
 	</ul>		
 	
 <br>    
