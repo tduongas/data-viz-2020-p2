@@ -19,8 +19,10 @@ var link = "GeoPlan_Public_and_Private_Schools_in_Florida_-_2017.geojson";
 
 // Grabbing our GeoJSON data..
 d3.json(link, function(data) {
+    // Cluster Layer
+    var markers = L.markerClusterGroup();
     // Creating a geoJSON layer with the retrieved data
-    L.geoJson(data, {
+    var geoJsonLayer = L.geoJson(data, {
       // Style each feature
       style: function(feature) {
         return {
@@ -59,6 +61,8 @@ d3.json(link, function(data) {
                         "</h6>");
   
       }
-    }).addTo(myMap);
+    });
+    markers.addLayer(geoJsonLayer);
+    myMap.addLayer(markers);
   });
   
