@@ -1,48 +1,55 @@
-import time
-import re
+from config import db_username, db_password, db_name
 import pandas as pd
+from flask import jsonify
+from io import StringIO
 import csv
 import json
-from io import StringIO
-from flask import Flask, render_template, redirect, jsonify, request, make_response
+import database_functions 
 
-
-def test():
-    all_passengers = []
-    
-    passenger_dict = {}
-    passenger_dict["name"] = "Dinh Duong"
-    passenger_dict["age"] = "40"
-    passenger_dict["sex"] = "M"
-    
-    all_passengers.append(passenger_dict)
-
-    passenger_dict["name"] = "Chrissy Duong"
-    passenger_dict["age"] = "39"
-    passenger_dict["sex"] = "F"
-
-    all_passengers.append(passenger_dict)
-
-    return jsonify(all_passengers)
-
-def deaths():
-    f = open('Deaths_FL.csv', 'r')
-    
-    if not f:
-        return "No file"
-	
-    file_contents = StringIO(f.read())
-    result = csv2json(file_contents)
-
-    result = json.loads(result.strip())
-    response = jsonify(result)
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    
-    return response
 
 def csv2json(data):
     reader = csv.DictReader
     reader = csv.DictReader(data)
     out = json.dumps([ row for row in reader ])
-    print ("JSON parsed!") 
     return out
+
+
+def load_data_into_database():
+    result = database_functions.load_files_into_database()
+
+    if result == True:
+        result = {'status': 'OK', 'payload': ''}
+    else:
+        result = {'status': 'OK', 'payload': ''}
+
+    return jsonify(result)
+
+
+def deaths():
+    result = database_functions.select_query("SELECT * FROM deaths")
+    return jsonify(result)
+
+
+def get_all_cases():
+    result = database_functions.select_query("SELECT * FROM all_cases")
+    return jsonify(result)
+    
+    
+def get_county_population():
+    result = database_functions.select_query("SELECT * FROM county_population")
+    return jsonify(result)
+
+
+def get_school_deo_data():
+    file = open('Data/GeoPlan_Public_and_Private_Schools_in_Florida_-_2017.geojson', 'r')
+    
+    if not file:
+        return "No file"
+	
+    file_contents = StringIO(file.read())
+    result = csv2json(file_contents)
+
+    result = json.loads(result.strip())
+    response = jsonify(result)
+
+    return response
