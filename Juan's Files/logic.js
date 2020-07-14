@@ -62,7 +62,47 @@ d3.json(link, function(data) {
   
       }
     });
+    // Add our marker cluster layer to the map
     markers.addLayer(geoJsonLayer);
     myMap.addLayer(markers);
-  });
+
+// Link to Florida_COVID19_Cases_by_County geojson
+var link2 = "Florida_COVID19_Cases_by_County.geojson";
+
+var geojson;
+
+// Grabbing our GeoJSON data..
+d3.json(link2, function(data) {
   
+  // Create a new choropleth layer
+  geojson = L.choropleth(data, {
+
+    // Define what  property in the features to use
+    valueProperty: "T_positive",
+
+    // Set color scale
+    scale: ["#ffffb2", "#b10026"],
+
+    // Number of breaks in step range
+    steps: 10,
+
+    // q for quartile, e for equidistant, k for k-means
+    mode: "q",
+    style: {
+      // Border color
+      color: "#fff",
+      weight: 1,
+      fillOpacity: 0.8
+    },
+
+    // Binding a pop-up to each layer
+    onEachFeature: function(feature, layer) {
+      layer.bindPopup("<h1>" + feature.properties.COUNTYNAME + 
+                      "</h1> <hr> <h2>" + feature.properties.T_positive + 
+                      "</h2>");
+
+    }
+  }).addTo(myMap);
+});
+
+});
