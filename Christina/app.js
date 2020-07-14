@@ -44,7 +44,7 @@ Promise.all([
         });
         return {
             county: item.County_Name,
-            cases: updatedObject.July_05
+            cases: updatedObject.July_12
         }
     });
 
@@ -63,7 +63,7 @@ Promise.all([
         });
         return {
             county: item.County_Name,
-            deaths: updatedObject.July_05
+            deaths: updatedObject.July_12
         }
     });
 
