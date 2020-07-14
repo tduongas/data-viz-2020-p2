@@ -1,4 +1,3 @@
-from config import db_username, db_password, db_name
 import pandas as pd
 from flask import jsonify
 from io import StringIO

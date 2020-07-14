@@ -33,23 +33,6 @@ d3.json(link, function(data) {
       },
       // Call on each feature
       onEachFeature: function(feature, layer) {
-        // Set mouse events to change map styling
-        layer.on({
-          // Mouseover event function, that feature's opacity changes to 90% so that it stands out
-          mouseover: function(event) {
-            layer = event.target;
-            layer.setStyle({
-              fillOpacity: 0.9
-            });
-          },
-          // Mouseover event function, the feature's opacity reverts back to 50%
-          mouseout: function(event) {
-            layer = event.target;
-            layer.setStyle({
-              fillOpacity: 0.5
-            });
-          }
-        });
         // Giving each feature a pop-up with information pertinent to it
         layer.bindPopup("<h1>" + feature.properties.NAME + 
                         "</h1> <hr> <h2>" + feature.properties.ADDRESS + 
@@ -73,7 +56,7 @@ var geojson;
 
 // Grabbing our GeoJSON data..
 d3.json(link2, function(data) {
-  
+
   // Create a new choropleth layer
   geojson = L.choropleth(data, {
 
@@ -86,23 +69,72 @@ d3.json(link2, function(data) {
     // Number of breaks in step range
     steps: 10,
 
-    // q for quartile, e for equidistant, k for k-means
+    // "q" for quartile
     mode: "q",
     style: {
       // Border color
       color: "#fff",
       weight: 1,
-      fillOpacity: 0.8
+      fillOpacity: 0.6
     },
 
     // Binding a pop-up to each layer
     onEachFeature: function(feature, layer) {
+              // Set mouse events to change map styling
+              layer.on({
+                // Mouseover event function, that feature's opacity changes to 90% so that it stands out
+                mouseover: function(event) {
+                  layer = event.target;
+                  layer.setStyle({
+                    fillOpacity: 0.9
+                  });
+                },
+                // Mouseover event function, the feature's opacity reverts back to 50%
+                mouseout: function(event) {
+                  layer = event.target;
+                  layer.setStyle({
+                    fillOpacity: 0.5
+                  });
+                },
+                // When a feature (neighborhood) is clicked, it is enlarged to fit the screen
+                click: function(event) {
+                myMap.fitBounds(event.target.getBounds());
+                }
+              });
       layer.bindPopup("<h1>" + feature.properties.COUNTYNAME + 
-                      "</h1> <hr> <h2>" + feature.properties.T_positive + 
+                      "</h1> <hr> <h2>" + "<br>Positive Cases:<br>" + feature.properties.T_positive + 
                       "</h2>");
 
     }
   }).addTo(myMap);
+
+    // Set up the legend
+    var legend = L.control({ position: "bottomright" });
+    legend.onAdd = function() {
+      var div = L.DomUtil.create("div", "info legend");
+      var limits = geojson.options.limits;
+      var colors = geojson.options.colors;
+      var labels = [];
+  
+      // Add min & max
+      var legendInfo = "<h1>Positive Cases</h1>" +
+        "<div class=\"labels\">" +
+          "<div class=\"min\">" + limits[0] + "</div>" +
+          "<div class=\"max\">" + limits[limits.length - 1] + "</div>" +
+        "</div>";
+  
+      div.innerHTML = legendInfo;
+  
+      limits.forEach(function(limit, index) {
+        labels.push("<li style=\"background-color: " + colors[index] + "\"></li>");
+      });
+  
+      div.innerHTML += "<ul>" + labels.join("") + "</ul>";
+      return div;
+    };
+  
+    // Adding legend to the map
+    legend.addTo(myMap);
 });
 
 });
