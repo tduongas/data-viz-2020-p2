@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route("/")
+@app.route("/routes")
 def welcome():
     """List all available api routes."""
     return (
@@ -25,7 +25,7 @@ def welcome():
 def main():
     
     # Redirect back to home page
-    return redirect("/")
+    return render_template("index.html")
 
 # Route
 @app.route("/api/v1.0/deaths")
