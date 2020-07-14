@@ -1,7 +1,7 @@
 import pandas as pd
 import json
 from sqlalchemy import create_engine
-from config import db_username, db_password, db_name, db_port
+from prod_config import db_username, db_password, db_name, db_port, db_host
 from psycopg2 import connect, extensions, sql
 from psycopg2 import sql, connect
 import psycopg2
@@ -16,9 +16,9 @@ csv_files = {'deaths':'Deaths_FL.csv',
 
 def connect_to_database(enable_real_dict_cursor=False):
     if enable_real_dict_cursor:
-        conn = psycopg2.connect(dbname = f"{db_name}", user = f"{db_username}", host = "localhost", password = f"{db_password}", cursor_factory=RealDictCursor)
+        conn = psycopg2.connect(dbname = f"{db_name}", user = f"{db_username}", host = f"{db_host}", password = f"{db_password}", cursor_factory=RealDictCursor)
     else:
-        conn = psycopg2.connect(dbname = f"{db_name}", user = f"{db_username}", host = "localhost", password = f"{db_password}")    
+        conn = psycopg2.connect(dbname = f"{db_name}", user = f"{db_username}", host = f"{db_host}", password = f"{db_password}")    
     return conn
 
 
@@ -54,7 +54,7 @@ def load_files_into_database():
     create_database(db_name)
 
     # initialize database engine to do the importing
-    connection_string = f"{db_username}:{db_password}@localhost:{db_port}/{db_name}"
+    connection_string = f"{db_username}:{db_password}@{db_host}:{db_port}/{db_name}"
     engine = create_engine(f'postgresql://{connection_string}')
     
     for table_name, filename in csv_files.items():
@@ -66,7 +66,7 @@ def load_files_into_database():
 def create_database(database_name):
 
     # connect to database server
-    conn = connect(dbname = "", user = f"{db_username}", host = "localhost", password = f"{db_password}")
+    conn = connect(dbname = f"{db_name}", user = f"{db_username}", host = f"{db_host}", password = f"{db_password}")
 
     # object type: psycopg2.extensions.connection
     print ("\ntype(conn):", type(conn))
