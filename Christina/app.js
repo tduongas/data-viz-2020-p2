@@ -129,7 +129,7 @@ Promise.all([
         type: 'bar'
     };
     var data = [trace1, trace2];
-    var layout = {barmode: 'stack'};
+    var layout = {barmode: 'stack', title: "Top 10 Counties with Most Cases"};
     Plotly.newPlot('stacked-bar', data, layout);
 
 
@@ -155,60 +155,56 @@ Promise.all([
     var initDeathsNum = initDeaths.map(d => d.deaths)
 
     // Initialize the Cases/Deaths bar chart
-    function initCaseDeath () {
-        var data = [
-            {
-            x: initCaseName,
-            y: initCaseNum,
-            name: 'Number of Cases',
-            type: 'bar'
-            }, 
-            {
-            x: initDeathsName,
-            y: initDeathsNum,
-            name: 'Number of Deaths',
-            type: 'bar'
-            }];
+    var data = [
+        {
+        x: initCaseName,
+        y: initCaseNum,
+        name: 'Number of Cases',
+        type: 'bar'
+        }, 
+        {
+        x: initDeathsName,
+        y: initDeathsNum,
+        name: 'Number of Deaths',
+        type: 'bar'
+        }];
 
-        var layout = {barmode: 'group'};
-        Plotly.newPlot('case-death-bar', data, layout);
-    };
+    var layout = {barmode: 'group', title: `Cases and Deaths in ${initCaseName}`};
+    Plotly.newPlot('case-death-bar', data, layout);
 
     // console.log(allCounties[1])
 
     // CREATE THE AGES CHART AND INITIALIZE IT WITH DATA
     // -----------------------------
-    // 
-    // var initCounty = function ageFilter () {
-        for (var x = 0; x < allCounties.length; x++) {
-            // console.log("All counties " + allCounties[i])
-            for(var i = 0; i < ageCases.length; i++)
-                if (allCounties[x].contains(ageCases[i].county)) {
-                    // console.log("County Death Names " + countyDeaths[x].county)
-                    var initCounty =  allCounties[x]
-                }
-        };    
-    // };
-    console.log(initCounty)
-
     // Filter the ages by the initial county
-    // var initAges = ageCases.filter(initialCounty);
-    // var initCaseName = initCases.map(d => d.county)
-    // var initCaseNum = initCases.map(d => d.cases)
-    // var initDeaths = countyDeaths.filter(initialCounty);
-    // var initDeathsName = initDeaths.map(d => d.county)
-    // var initDeathsNum = initDeaths.map(d => d.deaths)
+    var initAges = ageCases.filter(initialCounty);
+    var initAllAges = []
+
+    initAllAges.push(+initAges.map(d => d.age_0_4)[0])
+    initAllAges.push(+initAges.map(d => d.age_5_14)[0])
+    initAllAges.push(+initAges.map(d => d.age_15_24)[0])
+    initAllAges.push(+initAges.map(d => d.age_25_34)[0])
+    initAllAges.push(+initAges.map(d => d.age_35_44)[0])
+    initAllAges.push(+initAges.map(d => d.age_45_54)[0])
+    initAllAges.push(+initAges.map(d => d.age_55_64)[0])
+    initAllAges.push(+initAges.map(d => d.age_65_74)[0])
+    initAllAges.push(+initAges.map(d => d.age_75_84)[0])
+    initAllAges.push(+initAges.map(d => d.age_85plus)[0])
+    initAllAges.push(+initAges.map(d => d.age_Unkn)[0])
+    console.log(initAllAges)
 
     // initialize the Ages bar chart
     var data = [
         {
-          x: ["Age 0-4", "Age 5-14", "Age 15-24", "Age 25-34", "Age 35-44", "Age 45-54", "Age 55-64", "Age 65-74", "Age 75-84", "Age 85+", "Age Unknown"],
-          y: [20, 14, 23],
+          x: ["Age 0-4", "Age 5-14", "Age 15-24", "Age 25-34", "Age 35-44", "Age 45-54", "Age 55-64", "Age 65-74", 
+          "Age 75-84", "Age 85+", "Age Unknown"],
+          y: initAllAges,
           type: 'bar'
         }
     ];
+    var layout = {barmode: 'group', title: `Age Breakdown of Cases in ${initCaseName}`};
       
-    Plotly.newPlot('age-bar', data);
+    Plotly.newPlot('age-bar', data, layout);
 
 
 
@@ -220,7 +216,7 @@ Promise.all([
     // create the function that will update the charts based on the county selected in the drop-down
     function updatePlots () {
         var inputValue = dropdownMenu.property("value");
-        console.log(inputValue) 
+        // console.log(inputValue) 
 
         // create a function to use when filtering the data by the selected county
         var selectedCounty = function filteredCounty (county) {
@@ -239,20 +235,68 @@ Promise.all([
         var selectDeathsName = selectedDeaths.map(d => d.county)
         var selectDeathsNum = selectedDeaths.map(d => d.deaths)
 
-        var newData = [
+        // Replace the Cases/Deaths chart with the data for the selected county
+        var data = [
             {
             x: selectCaseName,
             y: selectCaseNum,
+            name: 'Number of Cases',
+            type: 'bar'
             }, 
             {
             x: selectDeathsName,
             y: selectDeathsNum,
+            name: 'Number of Deaths',
+            type: 'bar'
+            }];
+
+        var layout = {barmode: 'group', title: `Cases and Deaths in ${selectCaseName}`};
+        Plotly.newPlot('case-death-bar', data, layout);
+
+        for (var x = 0; x < allCounties.length; x++) {
+            for(var i = 0; i < ageCases.length; i++)
+                if (inputValue.includes(ageCases[i].county)) {
+                    var newCounty =  ageCases[i].county
+                }
+        };    
+        console.log(newCounty)
+
+        // create a function to use when filtering the data by the selected county
+        var selectAgeCounty = function filteredCounty (county) {
+            return county.county == newCounty;
+        };
+
+        // Filter the ages by the initial county
+        var selectAges = ageCases.filter(selectAgeCounty);
+        var selectAllAges = []
+
+        selectAllAges.push(+selectAges.map(d => d.age_0_4)[0])
+        selectAllAges.push(+selectAges.map(d => d.age_5_14)[0])
+        selectAllAges.push(+selectAges.map(d => d.age_15_24)[0])
+        selectAllAges.push(+selectAges.map(d => d.age_25_34)[0])
+        selectAllAges.push(+selectAges.map(d => d.age_35_44)[0])
+        selectAllAges.push(+selectAges.map(d => d.age_45_54)[0])
+        selectAllAges.push(+selectAges.map(d => d.age_55_64)[0])
+        selectAllAges.push(+selectAges.map(d => d.age_65_74)[0])
+        selectAllAges.push(+selectAges.map(d => d.age_75_84)[0])
+        selectAllAges.push(+selectAges.map(d => d.age_85plus)[0])
+        selectAllAges.push(+selectAges.map(d => d.age_Unkn)[0])
+        console.log(selectAllAges)
+
+        // initialize the Ages bar chart
+        var data = [
+            {
+            x: ["Age 0-4", "Age 5-14", "Age 15-24", "Age 25-34", "Age 35-44", "Age 45-54", "Age 55-64", "Age 65-74", 
+            "Age 75-84", "Age 85+", "Age Unknown"],
+            y: selectAllAges,
+            type: 'bar'
             }
         ];
-        Plotly.restyle("case-death-bar", newData);
+        var layout = {barmode: 'group', title: `Age Breakdown of Cases in ${newCounty} County`};
+        Plotly.newPlot('age-bar', data, layout);
     }
+    
 // }).catch(function(error) {
 //     console.log(error);
-initCaseDeath ()
 });
 
