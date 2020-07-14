@@ -9,7 +9,7 @@
 
 <br>
 <H2>Project Description/Outline:</H2>
-	<p>Using the skills and tools learnt in our Data Analytics/Vizualization course work such as SQL, Extract Transform Load (ETL), Data-Driven Documents (D3), Mapbox, Plotly, various frameworks and libraries we will explore ways to collect datasets and store them into a Postgres database. We will write APIs we can use in Python Flask. The data will get displayed using Plotly, Mapbox and Bootstrap. The chosen datasets we will are:</p>
+	<p>Using the skills and tools learnt in our Data Analytics/Vizualization course work such as SQL, Extract Transform Load (ETL), Data-Driven Documents (D3), Boxmap, Plotly, various frameworks and libraries we will explore ways to collect datasets and store them into a Postgres database. We will write APIs we can use in Python Flask. The data will get displayed using Plotly, Boxmap and Bootstrap. The chosen datasets we will are:</p>
 	<ul>
 		<li><a href="https://usafacts.org/visualizations/coronavirus-covid-19-spread-map/" rel="noopener noreferrer" target="_blank">Coronavirus Locations: COVID-19 Map by County and State</a></li>
 		<li><a href="https://open-fdoh.hub.arcgis.com/search?q=covid19" rel="noopener noreferrer" target="_blank">Florida Department of Health Open Data</a></li>
@@ -21,16 +21,16 @@
 	<p>Use public accessible datasets to visually assess the impact of COVID-19 on local schools in the state of Florida.</p>
 	<p>The focus question wil be: is it safe for schools to open in a particular county? We shall break down information gathered from our datasets into the following:</p>
 	<ul>
-		<li>Number of infected versus hospitalization</li>
-		<li>ICU bed availability per county</li>
 		<li>Choosen criteria: if more than 20 under the age of 20 die then we cannot open</li>
 		<li>Look at the number of cases versus population to see if this will give insight on schools to re-open</li>
+		<li>Number of infected versus hospitalization</li>
+		<li>ICU bed availability per county</li>
 	</ul>
 
 <br>
 <H2>Proposed specification:</H2>
 	<p>We will perform ETL technique to take our chosen datasets and load them into a Postgres database. Database queries will be created and get served by our Python Flask application with end points that will be constructed to be used by our front end application.</p>
-	<p>The front end application will be built using D3, Plotly and Boxmap. We will have a dashboard display two types of charts and a Boxmap. The dashboard will be written in Bootstrap.</p>
+	<p>The front end application will be built using D3, Plotly and Mapbox. We will have a dashboard display two types of charts and one Mapbox. The dashboard will be written in Bootstrap.</p>
 	
 <br>
 <H2>References:<H2>

@@ -20,7 +20,7 @@ def load_data_into_database():
     if result == True:
         result = {'status': 'OK', 'payload': ''}
     else:
-        result = {'status': 'OK', 'payload': ''}
+        result = {'status': 'ERROR', 'payload': ''}
 
     return jsonify(result)
 
