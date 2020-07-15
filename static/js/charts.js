@@ -306,7 +306,7 @@ Promise.all([
             width: 640,  // or any new width
             height: 250,  // " "
             title: {
-                text: `Cases and Deaths in ${initCaseName}`,
+                text: `Cases and Deaths in ${selectCaseName}`,
                 font: { family: 'Helvetica ', size: 14}
             },
             margin: {
@@ -364,7 +364,7 @@ Promise.all([
             width: 860,  // or any new width
             height: 280,  // " "
             title: {
-                text: `Age Breakdown of Cases in ${initCaseName}`,
+                text: `Age Breakdown of Cases in ${newCounty} County`,
                 font: { family: 'Helvetica ', size: 14}
             },
             margin: {
