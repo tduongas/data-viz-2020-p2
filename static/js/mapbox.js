@@ -16,7 +16,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   
 
   // Use this link to get the geojson data.
-var link = "../../data/GeoPlan_Public_and_Private_Schools_in_Florida_-_2017.geojson";
+var link = "static/data/GeoPlan_Public_and_Private_Schools_in_Florida_-_2017.geojson";
 
 // Grabbing our GeoJSON data..
 d3.json(link, function(data) {
@@ -52,7 +52,7 @@ d3.json(link, function(data) {
     myMap.addLayer(markers);
 
     // Link to Florida_COVID19_Cases_by_County geojson
-    var link2 = "../../data/Florida_COVID19_Cases_by_County.geojson";
+    var link2 = "static/data/Florida_COVID19_Cases_by_County.geojson";
 
     var geojson;
 

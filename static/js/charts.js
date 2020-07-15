@@ -3,11 +3,9 @@ var dropdownMenu = d3.select("#selDataset");
 
 // read in all of the data sources
 Promise.all([
-    // d3.json("/api/v1.0/deaths"),
-    // d3.json("/api/v1.0/allCases"),
-    d3.csv("../../data/Deaths_FL.csv"),
-    d3.csv("../../data/AllCases_FL.csv"),
-    d3.csv("../../data/Florida_COVID19_Cases_by_County.csv"),
+    d3.json("/api/v1.0/deaths"),
+    d3.json("/api/v1.0/allCases"),
+    d3.json("/api/v1.0/casesByCounty"),
     ]).then(function(files) {
         var deaths = files[0]
         var cases = files[1]
