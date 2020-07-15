@@ -97,7 +97,7 @@ def create_database(database_name):
 
 
 def read_csv_to_database( filename, table_name, engine, if_exists='replace', index=True ):
-    in_file = f"Data/{filename}"
+    in_file = f"static/data/{filename}"
     df = pd.read_csv(in_file)
     df.to_sql(name=f"{table_name}", con=engine, if_exists=f"{if_exists}", index=index)
 

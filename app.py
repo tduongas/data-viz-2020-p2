@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route("/")
+@app.route("/routes")
 def welcome():
     """List all available api routes."""
     return (
@@ -16,6 +16,7 @@ def welcome():
         f"/api/v1.0/deaths<br/>"
         f"/api/v1.0/allCases<br/>"
         f"/api/v1.0/countyPopulation<br/>"
+        f"/api/v1.0/casesByCounty<br/>"
         f"/api/v1.0/schoolGeoData<br/>"
         f"/api/v1.0/etlDatasets"
     )
@@ -25,7 +26,7 @@ def welcome():
 def main():
     
     # Redirect back to home page
-    return redirect("/")
+    return render_template("index.html")
 
 # Route
 @app.route("/api/v1.0/deaths")
@@ -40,7 +41,12 @@ def all_cases():
 # Route
 @app.route("/api/v1.0/countyPopulation")
 def county_population():
-    return general_functions.get_county_population()  
+    return general_functions.get_county_population() 
+
+# Route
+@app.route("/api/v1.0/casesByCounty")
+def cases_by_county():
+    return general_functions.get_cases_by_county()      
 
 # Route
 @app.route("/api/v1.0/schoolGeoData")

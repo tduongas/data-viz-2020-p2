@@ -39,8 +39,13 @@ def get_county_population():
     return jsonify(result)
 
 
+def get_cases_by_county():
+    result = database_functions.select_query("SELECT * FROM cases_by_county")
+    return jsonify(result)
+
+
 def get_school_deo_data():
-    file = open('Data/GeoPlan_Public_and_Private_Schools_in_Florida_-_2017.geojson', 'r')
+    file = open('data/GeoPlan_Public_and_Private_Schools_in_Florida_-_2017.geojson', 'r')
     
     if not file:
         return "No file"

@@ -3,9 +3,9 @@ var dropdownMenu = d3.select("#selDataset");
 
 // read in all of the data sources
 Promise.all([
-    d3.csv("Deaths_FL.csv"),
-    d3.csv("AllCases_FL.csv"),
-    d3.csv("Florida_COVID19_Cases_by_County.csv"),
+    d3.json("/api/v1.0/deaths"),
+    d3.json("/api/v1.0/allCases"),
+    d3.json("/api/v1.0/casesByCounty"),
     ]).then(function(files) {
         var deaths = files[0]
         var cases = files[1]
@@ -44,7 +44,7 @@ Promise.all([
         });
         return {
             county: item.County_Name,
-            cases: updatedObject.July_12
+            cases: updatedObject.July_05
         }
     });
 
@@ -63,7 +63,7 @@ Promise.all([
         });
         return {
             county: item.County_Name,
-            deaths: updatedObject.July_12
+            deaths: updatedObject.July_05
         }
     });
 
@@ -130,7 +130,24 @@ Promise.all([
     };
     var data = [trace1, trace2];
     var layout = {barmode: 'stack', title: "Top 10 Counties with Most Cases"};
-    Plotly.newPlot('stacked-bar', data, layout);
+    var config = {responsive: true}
+    Plotly.newPlot('stacked-bar', data, layout, config);
+    var update = {
+        width: 850,  // or any new width
+        height: 240,  // " "
+        title: {
+            text: "Top 10 Counties with Most Cases",
+            font: { family: 'Helvetica ', size: 14}
+        },
+        margin: {
+            t: 30, //top margin
+            l: 50, //left margin
+            r: 10, //right margin
+            b: 80 //bottom margin
+        }
+    };
+      
+    Plotly.relayout('stacked-bar', update);
 
 
 
@@ -170,7 +187,25 @@ Promise.all([
         }];
 
     var layout = {barmode: 'group', title: `Cases and Deaths in ${initCaseName}`};
-    Plotly.newPlot('case-death-bar', data, layout);
+    var config = {responsive: true}
+    Plotly.newPlot('case-death-bar', data, layout, config);
+    var update = {
+        width: 640,  // or any new width
+        height: 250,  // " "
+        title: {
+            text: `Cases and Deaths in ${initCaseName}`,
+            font: { family: 'Helvetica ', size: 14}
+        },
+        margin: {
+            t: 30, //top margin
+            l: 50, //left margin
+            r: 10, //right margin
+            b: 80 //bottom margin
+        }
+      };
+      
+    Plotly.relayout('case-death-bar', update);
+    
 
     // console.log(allCounties[1])
 
@@ -191,7 +226,6 @@ Promise.all([
     initAllAges.push(+initAges.map(d => d.age_75_84)[0])
     initAllAges.push(+initAges.map(d => d.age_85plus)[0])
     initAllAges.push(+initAges.map(d => d.age_Unkn)[0])
-    console.log(initAllAges)
 
     // initialize the Ages bar chart
     var data = [
@@ -203,8 +237,24 @@ Promise.all([
         }
     ];
     var layout = {barmode: 'group', title: `Age Breakdown of Cases in ${initCaseName}`};
+    var config = {responsive: true}  
+    Plotly.newPlot('age-bar', data, layout, config);
+    var update = {
+        width: 860,  // or any new width
+        height: 280,  // " "
+        title: {
+            text: `Age Breakdown of Cases in ${initCaseName}`,
+            font: { family: 'Helvetica ', size: 14}
+        },
+        margin: {
+            t: 70, //top margin
+            l: 50, //left margin
+            r: 10, //right margin
+            b: 80 //bottom margin
+        }
+    };
       
-    Plotly.newPlot('age-bar', data, layout);
+    Plotly.relayout('age-bar', update);
 
 
 
@@ -252,6 +302,22 @@ Promise.all([
 
         var layout = {barmode: 'group', title: `Cases and Deaths in ${selectCaseName}`};
         Plotly.newPlot('case-death-bar', data, layout);
+        var update = {
+            width: 640,  // or any new width
+            height: 250,  // " "
+            title: {
+                text: `Cases and Deaths in ${initCaseName}`,
+                font: { family: 'Helvetica ', size: 14}
+            },
+            margin: {
+                t: 30, //top margin
+                l: 50, //left margin
+                r: 10, //right margin
+                b: 80 //bottom margin
+            }
+          };
+          
+        Plotly.relayout('case-death-bar', update);
 
         for (var x = 0; x < allCounties.length; x++) {
             for(var i = 0; i < ageCases.length; i++)
@@ -294,9 +360,24 @@ Promise.all([
         ];
         var layout = {barmode: 'group', title: `Age Breakdown of Cases in ${newCounty} County`};
         Plotly.newPlot('age-bar', data, layout);
+        var update = {
+            width: 860,  // or any new width
+            height: 280,  // " "
+            title: {
+                text: `Age Breakdown of Cases in ${initCaseName}`,
+                font: { family: 'Helvetica ', size: 14}
+            },
+            margin: {
+                t: 70, //top margin
+                l: 50, //left margin
+                r: 10, //right margin
+                b: 80 //bottom margin
+            }
+        };
+          
+        Plotly.relayout('age-bar', update);
     }
     
 // }).catch(function(error) {
 //     console.log(error);
 });
-

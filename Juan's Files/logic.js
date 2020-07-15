@@ -33,23 +33,6 @@ d3.json(link, function(data) {
       },
       // Call on each feature
       onEachFeature: function(feature, layer) {
-        // Set mouse events to change map styling
-        layer.on({
-          // Mouseover event function, that feature's opacity changes to 90% so that it stands out
-          mouseover: function(event) {
-            layer = event.target;
-            layer.setStyle({
-              fillOpacity: 0.9
-            });
-          },
-          // Mouseover event function, the feature's opacity reverts back to 50%
-          mouseout: function(event) {
-            layer = event.target;
-            layer.setStyle({
-              fillOpacity: 0.5
-            });
-          }
-        });
         // Giving each feature a pop-up with information pertinent to it
         layer.bindPopup("<h1>" + feature.properties.NAME + 
                         "</h1> <hr> <h2>" + feature.properties.ADDRESS + 
@@ -92,11 +75,32 @@ d3.json(link2, function(data) {
       // Border color
       color: "#fff",
       weight: 1,
-      fillOpacity: 0.8
+      fillOpacity: 0.6
     },
 
     // Binding a pop-up to each layer
     onEachFeature: function(feature, layer) {
+              // Set mouse events to change map styling
+              layer.on({
+                // Mouseover event function, that feature's opacity changes to 90% so that it stands out
+                mouseover: function(event) {
+                  layer = event.target;
+                  layer.setStyle({
+                    fillOpacity: 0.9
+                  });
+                },
+                // Mouseover event function, the feature's opacity reverts back to 50%
+                mouseout: function(event) {
+                  layer = event.target;
+                  layer.setStyle({
+                    fillOpacity: 0.5
+                  });
+                },
+                // When a feature (neighborhood) is clicked, it is enlarged to fit the screen
+                click: function(event) {
+                myMap.fitBounds(event.target.getBounds());
+                }
+              });
       layer.bindPopup("<h1>" + feature.properties.COUNTYNAME + 
                       "</h1> <hr> <h2>" + "<br>Positive Cases:<br>" + feature.properties.T_positive + 
                       "</h2>");
