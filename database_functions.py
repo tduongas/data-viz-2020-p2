@@ -15,6 +15,8 @@ csv_files = {'deaths':'Deaths_FL.csv',
 
 
 def connect_to_database(enable_real_dict_cursor=False):
+
+    print(db_password)
     if enable_real_dict_cursor:
         conn = psycopg2.connect(dbname = f"{db_name}", user = f"{db_username}", host = f"{db_host}", password = f"{db_password}", cursor_factory=RealDictCursor)
     else:
